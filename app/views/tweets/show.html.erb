@@ -1,0 +1,30 @@
+<div class="container">
+  
+  <div class="container">
+    <h1> Tweet </h1>
+    <p><%= @tweet.user.name%></p>
+    <p><img src="<%= @tweet.user.avatar %>" class="img-thumbnail" alt="user avatar"></p>
+    
+    <p>
+      <strong>Content:</strong>
+      <%= @tweet.content %>
+    </p> 
+    <small><%= time_ago_in_words(@tweet.created_at) %> ago</small>  
+  </div>
+
+  <div class="container">
+    <strong>Like to:</strong>
+    <% @tweet.likes.each do |like| %>
+      <% if like.user.avatar? %>
+        <p><img src="<%= like.user.avatar %>" class="img-thumbnail" alt="user avatar"></p>
+      <% end %>
+    <% end %>
+  </div> 
+
+  <div class="container">
+    <%= link_to "Back", tweets_path %> 
+  </div>
+</div>
+  
+  
+

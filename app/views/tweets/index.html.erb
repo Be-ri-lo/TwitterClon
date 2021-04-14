@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <p flas="notice"><%= notice %></p>
+  </div>
+<!--Kaminari-->
+  <!--<div class="container">-->
+    <%= paginate @tweets %> <!-- preguntar por qué no funciona! --> 
+    <%#<%= link_to_next_page @users, 'Next Page' %>
+  <!--</div>-->
+<!--Buscador-->
+      <form class="d-flex">
+        <%= search_form_for @q do |f| %> 
+          <%= f.search_field :content_cont %> 
+          <%= f.submit %> 
+        <% end %> 
+        <!--<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >-->  
+      </form>
+<!--Historia nueva-->      
+  <div class="container">
+    <% if user_signed_in? %> 
+      <div class="col-sm">
+        <p>Nuevo Tweet</p>
+        <%= render 'form', tweet: @tweet %>
+      </div>
+    <% end %>
+  </div>
+<!--Contenido-->  
+  <div class="container">
+    <div class="col-m">
+      <table>
+        <thead>
+          <tr>
+            <th>Content</th>
+            <th>User</th>
+            <th>Like</th>
+            <th>Retweet</th>
+            <th>Seguidores</th>
+            <th colspan="8"></th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <% @tweets.each do |tweet| %>
+            <tr>
+              <td><%= tweet.content %></td>
+              <td><img src="<%= tweet.user.avatar %>" class="img-thumbnail" alt="user avatar"></td> 
+              <td><%= tweet.likes.size %></td>  
+              <td><%= tweet.retweets.size %></td>
+               
+              <% if user_signed_in? %>
+                <!--Boton Like-->
+                <% if tweet.liked?(current_user)%> 
+                  <td><%= button_to 'unlike', tweet_likes_path(tweet), method: :post %></td>
+                <% else %>
+                  <td><%= button_to 'like', tweet_likes_path(tweet), method: :post %></td>
+                <% end %>
+                <!--Retweet-->
+                  <td><%= button_to 'RT', tweet_retweet_path(tweet), method: :post %></td> 
+                 <!--Friend-->
+                <%#<% if current_user.friend?(user) %>
+                    <!--<td><%= button_to 'Follow', tweet_friend_path(tweet), method: :post %></td>
+                <%#<% else %> 
+                    <td> <%= button_to 'Unfollow', tweet_unfriend_path(tweet), method: :delete %></td>-->
+                <%#<% end %>
+                <!--Enlaces vistas-->
+                <td><%= link_to "#{time_ago_in_words(tweet.created_at)} ago", tweet_path(tweet) %></td>  <!--ok-->
+              <% end %> 
+              
+               <% if user_signed_in? && @tweet.user_id == current_user.id %> <!--pendiente--> 
+                  <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
+                  <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+               <% end %> 
+            </tr>  
+          <% end %> 
+        </tbody>
+      </table>    
+    </div>
+  </div>
+</div>

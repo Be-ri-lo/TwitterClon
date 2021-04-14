@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light", style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href=""><%= link_to 'Twitter', root_path %> </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Opciones
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if user_signed_in? %>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Editar perfil', edit_user_registration_path %></a></li>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Tweets', tweets_path %></a></li>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Usuarios', users_index_path %></a></li>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></a></li>
+              <%#<li><a class="dropdown-item" href="#"><%= link_to 'Administrador', new_admin_user_session_path %></a></li>
+            <% else %>
+              <%#<li><a class="dropdown-item" href="#"><%= link_to 'Administrador', new_admin_user_session_path %></a></li>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Regístrate', new_user_registration_path %></a></li>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Iniciar sesión', new_user_session_path %></a></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+      
+      <!--<form class="d-flex">
+        <%#<%= search_form_for @q do |f| %>
+          <%#<%= f.search_field :content_cont %>
+          <%#<%= f.submit %>
+        <%#<% end %>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" >
+      </form>-->
+    </div>
+  </div>
+</nav>
+
+

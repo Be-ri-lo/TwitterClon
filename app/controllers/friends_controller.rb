@@ -7,14 +7,19 @@ class FriendsController < ApplicationController
     end
 
     def create
-        @friend = Friend.new(friend_params.merge(user: current_user))
+        @user.friends.create(user_id: current_user.id)
+        redirect_to root_path  #por que estas conectado  
         
-        respond_to do |format|
-            if @friend.save
-                format.html { redirect_to root_path, notice: "Siguiendo" }
-            else
-                redirect_to root_path
-            end
+        
+        
+        # @friend = Friend.new(friend_params.merge(user: current_user))
+        
+        # respond_to do |format|
+        #     if @friend.save
+        #         format.html { redirect_to root_path, notice: "Siguiendo" }
+        #     else
+        #         redirect_to root_path
+        #     end
         
 
         #@user = User.all.find(params[:id])
@@ -28,16 +33,16 @@ class FriendsController < ApplicationController
     end
 
 private
-    def set_friend
-        @friend = Friend.find(params[:id])
-    end
-
     def set_user
         @user = User.find(params[:user_id])
     end
 
-    def friend_params
-        params.require(:friend).permit(:friend_id, :user_id)
+    def set_friend
+        @friend = @user.friends.find(params[:id])
     end
+
+    # def friend_params
+    #     params.require(:friend).permit(:friend_id, :user_id)
+    # end
   
 end

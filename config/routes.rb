@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'api/news', to: 'api#index'
+  get 'api/:start_date/:end_date', to: 'api#show'
+  post 'api/tweets', to: 'api#create'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   

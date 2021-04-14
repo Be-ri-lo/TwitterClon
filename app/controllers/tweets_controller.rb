@@ -89,6 +89,17 @@ class TweetsController < ApplicationController
       # end
     end
 
+    def friend
+      @friend = @user.friend.create(user_id: current_user.id, friend_id: @tweet.user.id)
+      redirect_to root_path, notice: "Siguiendo"
+    end
+  
+    def unfriend
+      @friend = Friend.find_by(friend_id: @tweet.user.id)
+      @friend.destroy
+      redirect_to root_path, notice: "Dejaste de seguirlo"
+    end
+
     def hashtags
       tag = Tag.find_by(name: params[:name])
       @q = Tag.ransack(params[:q])

@@ -1,2 +1,16 @@
 
+<%= form_with(model: @like) do |form| %>
+ 
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_area :amount %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+
+<% end %>
+
 

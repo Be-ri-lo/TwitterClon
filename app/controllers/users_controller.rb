@@ -47,6 +47,17 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  def friend
+    @user = User.all.find(params[:id])
+    Friend.create(user_id: current_user.id, friend_id: @tweet.user.id)
+    redirect_to root_path, notice: "Siguiendo"
+  end
+
+  def unfriend
+    @friend = Friend.find_by(friend_id: @tweet.user.id)
+    @friend.destroy
+    redirect_to root_path, notice: "Dejaste de seguirlo"
+  end
   
 private
   def set_user

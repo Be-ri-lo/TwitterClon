@@ -57,7 +57,7 @@
                 <!--Retweet-->
                   <td><%= button_to 'RT', tweet_retweet_path(tweet), method: :post %></td> 
                  <!--Friend-->
-                <%#<% if current_user.friend?(user) %>
+                <%#<% if @user.friend?(current_user) %>
                     <!--<td><%= button_to 'Follow', tweet_friend_path(tweet), method: :post %></td>
                 <%#<% else %> 
                     <td> <%= button_to 'Unfollow', tweet_unfriend_path(tweet), method: :delete %></td>-->

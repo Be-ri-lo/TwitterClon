@@ -88,18 +88,6 @@ class TweetsController < ApplicationController
       # redirect_to new_tweet_path(tweet) #pendiente de la vista, no resulta.  
       # end
     end
-    
-    def friend
-      @user = User.all.find(params[:id])
-      Friend.create(user_id: current_user.id, friend_id: @tweet.user.id)
-      redirect_to root_path, notice: "Siguiendo"
-    end
-
-    def unfriend
-      @friend = Friend.find_by(friend_id: @tweet.user.id)
-      @friend.destroy
-      redirect_to root_path, notice: "Dejaste de seguirlo"
-    end
 
     private
       # Use callbacks to share common setup or constraints between actions.

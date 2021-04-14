@@ -42,7 +42,7 @@
         <tbody>
           <% @tweets.each do |tweet| %>
             <tr>
-              <td><%= tweet.content %></td>
+              <td><%= render_with_hashtags(tweet.content) %></td>
               <td><img src="<%= tweet.user.avatar %>" class="img-thumbnail" alt="user avatar"></td> 
               <td><%= tweet.likes.size %></td>  
               <td><%= tweet.retweets.size %></td>

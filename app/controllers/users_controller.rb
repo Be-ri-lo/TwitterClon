@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     @tweet = current_user.tweets.build if logged_in?
     @user = User.new
-    @friend = Friend.where(user_id: current_user.id, friend_id: @user.id).first_or_initialize if current_user
+    #@friend = Friend.where(user_id: current_user.id, friend_id: @user.id).first_or_initialize if current_user
   end
 
   def new

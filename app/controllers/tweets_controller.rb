@@ -91,7 +91,7 @@ class TweetsController < ApplicationController
 
     def hashtags
       tag = Tag.find_by(name: params[:name])
-      @q = Tag.tweets.includes([:user]).pages(params[:page]).ransack(params[:q])
+      @q = Tag.ransack(params[:q])
       @tweets = @q.result(distinct: true)
       @tweets = tag.tweets
     end

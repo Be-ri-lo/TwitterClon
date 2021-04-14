@@ -16,9 +16,9 @@
               <li><a class="dropdown-item" href="#"><%= link_to 'Tweets', tweets_path %></a></li>
               <li><a class="dropdown-item" href="#"><%= link_to 'Usuarios', users_index_path %></a></li>
               <li><a class="dropdown-item" href="#"><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></a></li>
-              <%#<li><a class="dropdown-item" href="#"><%= link_to 'Administrador', new_admin_user_session_path %></a></li>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Administrador', new_admin_user_session_path %></a></li>
             <% else %>
-              <%#<li><a class="dropdown-item" href="#"><%= link_to 'Administrador', new_admin_user_session_path %></a></li>
+              <li><a class="dropdown-item" href="#"><%= link_to 'Administrador', new_admin_user_session_path %></a></li>
               <li><a class="dropdown-item" href="#"><%= link_to 'Regístrate', new_user_registration_path %></a></li>
               <li><a class="dropdown-item" href="#"><%= link_to 'Iniciar sesión', new_user_session_path %></a></li>
             <% end %>
